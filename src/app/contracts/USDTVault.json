@@ -1,0 +1,4 @@
+{
+  "contractName": "Vault",
+  "abi": [{"inputs":[{"internalType":"address","name":"token","type":"address"}],"name":"__Vault_init","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"coo","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getBalance","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getToken","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"updateAllowances","outputs":[],"stateMutability":"nonpayable","type":"function"}]
+}

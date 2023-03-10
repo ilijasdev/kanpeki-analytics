@@ -1,0 +1,74 @@
+<h1 mat-dialog-title>Check deposit performance</h1>
+<div mat-dialog-content>
+  <mat-form-field appearance="outline" [style.width.px]=375>
+    <mat-label>Search by Address</mat-label>
+    <input matInput>
+  </mat-form-field>
+</div>
+
+<mat-tab-group>
+  <mat-tab label="Long tab">
+    <ng-template mat-tab-label>
+      <img src="/assets/wFtm_32.png" alt="">
+    </ng-template>
+    <div class="example-large-box mat-elevation-z4">
+      WFTM Deposit performance...
+    </div>
+  </mat-tab>
+  <mat-tab label="Long tab">
+    <ng-template mat-tab-label>
+      <img src="/assets/USDC_32.png" alt="">
+    </ng-template>
+    <div class="example-large-box mat-elevation-z4">
+      USDC Deposit performance...
+    </div>
+  </mat-tab>
+  <mat-tab label="Long tab">
+    <ng-template mat-tab-label>
+      <img src="/assets/wETH_32.png" alt="">
+    </ng-template>
+    <div class="example-large-box mat-elevation-z4">
+      WETH Deposit performance...
+    </div>
+  </mat-tab>
+  <mat-tab label="Long tab">
+    <ng-template mat-tab-label>
+      <img src="/assets/Dai_32.png" alt="">
+    </ng-template>
+    <div class="example-large-box mat-elevation-z4">
+      DAI Deposit performance...
+    </div>
+  </mat-tab>
+  <mat-tab label="Long tab">
+    <ng-template mat-tab-label>
+      <img src="/assets/tether_32.png" alt="">
+    </ng-template>
+    <div class="example-large-box mat-elevation-z4">
+      USDT Deposit performance...
+    </div>
+  </mat-tab>
+  <mat-tab label="Long tab">
+    <ng-template mat-tab-label>
+      <img src="/assets/chainlink_32.png" alt="">
+    </ng-template>
+    <div class="example-large-box mat-elevation-z4">
+      LINK Deposit performance...
+    </div>
+  </mat-tab>
+  <mat-tab label="Long tab">
+    <ng-template mat-tab-label>
+      <img src="/assets/wBTC_32.png" alt="">
+    </ng-template>
+    <div class="example-large-box mat-elevation-z4">
+      WBTC Deposit performance...
+    </div>
+  </mat-tab>
+</mat-tab-group>
+
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="onNoClick()">
+    Close
+    <!-- <mat-icon>close</mat-icon> -->
+  </button>
+  <!-- <button mat-button cdkFocusInitial>Ok</button> -->
+</div>

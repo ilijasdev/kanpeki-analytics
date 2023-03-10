@@ -1,0 +1,41 @@
+* {
+  font-family: sans-serif !important;
+}
+
+::ng-deep .mat-form-field-flex > .mat-form-field-infix { padding: 0.4em 0px !important;}
+::ng-deep .mat-form-field-label-wrapper { top: -1.5em; }
+
+::ng-deep .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+    transform: translateY(-1.1em) scale(.75);
+    width: 133.33333%;
+}
+
+.example-small-box, .example-large-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 16px;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.example-small-box {
+  height: 100px;
+  width: 100px;
+}
+
+.example-large-box {
+  /* height: 300px; */
+  /* width: 300px; */
+  box-shadow: 0px 1px 2px -1px rgb(0 0 0 / 15%), 0px 2px 3px 0px rgb(0 0 0 / 10%), 0px 1px 5px 0px rgb(0 0 0 / 10%);
+}
+
+::ng-deep.mat-tab-label, ::ng-deep.mat-tab-label-active{
+   min-width: 55px !important;
+   padding: 3px!important;
+   margin: 3px!important;
+}
+
+::ng-deep.mat-tab-labels > div {
+  opacity: 1;
+}

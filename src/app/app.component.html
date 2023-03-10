@@ -1,0 +1,329 @@
+<!-- Toolbar -->
+<div class="toolbar" role="banner">
+  <img
+    width="30"
+    alt="Kanpeki Logo"
+    src="/assets/kanpeki-green.png"
+  />
+  <div class="spacer"></div>
+  <button mat-button
+    matTooltip="Check your deposit performance over time!" (click)="openDialog()">
+    <mat-icon>offline_bolt</mat-icon>
+  </button>
+  <!-- <button mat-button>L-Health
+    <mat-icon>monitor_heart</mat-icon>
+  </button> -->
+</div>
+
+<div class="protocol-title">
+  <h2>Kanpeki Finance</h2>
+  <p>Analytics</p>
+</div>
+
+<div class="content" role="main">
+  <div class="content-main">
+    <div class="vaults">
+      <h4>Available Liquidity
+        <i class="fa fa-exchange" aria-hidden="true"></i>
+        <i class="fa fa-circle pulse"></i>
+        <span style="float: right;font-size: 12px;padding-right: 10px;font-style: italic;">Live data</span>
+      </h4>
+      <div class="kae-deposits">
+        <table>
+          <tr *ngFor="let asset of depositedAmounts | keys">
+            <th *ngIf="asset == '0x321162Cd933E2Be498Cd2267a90534A804051b11'">
+              <img [src]="tokenAddresses['0x321162Cd933E2Be498Cd2267a90534A804051b11']" style="padding-right: 10px;width: 25px;vertical-align: inherit;" alt="">
+              <span> WBTC </span>
+            </th>
+            <th *ngIf="asset == '0x04068DA6C83AFCFA0e13ba15A6696662335D5B75'">
+              <img [src]="tokenAddresses['0x04068DA6C83AFCFA0e13ba15A6696662335D5B75']" style="padding-right: 10px;width: 25px;vertical-align: inherit;" alt="">
+              <span> USDC </span>
+            </th>
+            <th *ngIf="asset == '0x049d68029688eAbF473097a2fC38ef61633A3C7A'">
+              <img [src]="tokenAddresses['0x049d68029688eAbF473097a2fC38ef61633A3C7A']" style="padding-right: 10px;width: 25px;vertical-align: inherit;" alt="">
+              <span> USDT </span>
+            </th>
+            <th *ngIf="asset == '0x74b23882a30290451A17c44f4F05243b6b58C76d'">
+              <img [src]="tokenAddresses['0x74b23882a30290451A17c44f4F05243b6b58C76d']" style="padding-right: 10px;width: 25px;vertical-align: inherit;" alt="">
+              <span> WETH </span>
+            </th>
+            <th *ngIf="asset == '0x21be370D5312f44cB42ce377BC9b8a0cEF1A4C83'">
+              <img [src]="tokenAddresses['0x21be370D5312f44cB42ce377BC9b8a0cEF1A4C83']" style="padding-right: 10px;width: 25px;vertical-align: inherit;" alt="">
+              <span> WFTM </span>
+            </th>
+            <th *ngIf="asset == '0x8D11eC38a3EB5E956B052f67Da8Bdc9bef8Abf3E'">
+              <img [src]="tokenAddresses['0x8D11eC38a3EB5E956B052f67Da8Bdc9bef8Abf3E']" style="padding-right: 10px;width: 25px;vertical-align: inherit;" alt="">
+              <span> DAI </span>
+            </th>
+            <th *ngIf="asset == '0xb3654dc3D10Ea7645f8319668E8F54d2574FBdC8'">
+              <img [src]="tokenAddresses['0xb3654dc3D10Ea7645f8319668E8F54d2574FBdC8']" style="padding-right: 10px;width: 25px;vertical-align: inherit;" alt="">
+              <span> LINK </span>
+            </th>
+            <!-- <td style="padding-left: 10px;"> → </td> -->
+            <td style="padding-left: 10px;">{{ depositedAmounts[asset] }}</td>
+            <td style="padding-left: 10px;"> → </td>
+            <td style="padding-left: 10px;"><span><strong>{{ depositedAmountPerAsset[asset] }}</strong></span></td>
+          </tr>
+        </table>
+        <p class="cumulative-liquidity-amount">Available Liquidity
+          <kae-spinner *ngIf="!cumulativeLiquidityAmount"></kae-spinner>
+          <span *ngIf="cumulativeLiquidityAmount">{{ cumulativeLiquidityAmount }}</span>
+        </p>
+      </div>
+    </div>
+    <div class="vaults">
+      <h4>Total Borrowed
+        <i class="fa fa-exchange" aria-hidden="true"></i>
+        <i class="fa fa-circle pulse"></i>
+        <span style="float: right;font-size: 12px;padding-right: 10px;font-style: italic;">Live data</span>
+      </h4>
+      <div class="kae-borrow">
+        <table>
+          <tr *ngFor="let asset of borrowedAmounts | keys">
+            <th *ngIf="asset == '0x321162Cd933E2Be498Cd2267a90534A804051b11'">
+              <img [src]="tokenAddresses['0x321162Cd933E2Be498Cd2267a90534A804051b11']" style="padding-right: 10px;width: 25px;vertical-align: inherit;" alt="">
+              <span> WBTC </span>
+            </th>
+            <th *ngIf="asset == '0x04068DA6C83AFCFA0e13ba15A6696662335D5B75'">
+              <img [src]="tokenAddresses['0x04068DA6C83AFCFA0e13ba15A6696662335D5B75']" style="padding-right: 10px;width: 25px;vertical-align: inherit;" alt="">
+              <span> USDC </span>
+            </th>
+            <th *ngIf="asset == '0x049d68029688eAbF473097a2fC38ef61633A3C7A'">
+              <img [src]="tokenAddresses['0x049d68029688eAbF473097a2fC38ef61633A3C7A']" style="padding-right: 10px;width: 25px;vertical-align: inherit;" alt="">
+              <span> USDT </span>
+            </th>
+            <th *ngIf="asset == '0x74b23882a30290451A17c44f4F05243b6b58C76d'">
+              <img [src]="tokenAddresses['0x74b23882a30290451A17c44f4F05243b6b58C76d']" style="padding-right: 10px;width: 25px;vertical-align: inherit;" alt="">
+              <span> ETH </span>
+            </th>
+            <th *ngIf="asset == '0x21be370D5312f44cB42ce377BC9b8a0cEF1A4C83'">
+              <img [src]="tokenAddresses['0x21be370D5312f44cB42ce377BC9b8a0cEF1A4C83']" style="padding-right: 10px;width: 25px;vertical-align: inherit;" alt="">
+              <span> FTM </span>
+            </th>
+            <th *ngIf="asset == '0x8D11eC38a3EB5E956B052f67Da8Bdc9bef8Abf3E'">
+              <img [src]="tokenAddresses['0x8D11eC38a3EB5E956B052f67Da8Bdc9bef8Abf3E']" style="padding-right: 10px;width: 25px;vertical-align: inherit;" alt="">
+              <span> DAI </span>
+            </th>
+            <th *ngIf="asset == '0xb3654dc3D10Ea7645f8319668E8F54d2574FBdC8'">
+              <img [src]="tokenAddresses['0xb3654dc3D10Ea7645f8319668E8F54d2574FBdC8']" style="padding-right: 10px;width: 25px;vertical-align: inherit;" alt="">
+              <span> LINK </span>
+            </th>
+            <!-- <td style="padding-left: 10px;"> → </td> -->
+            <td style="padding-left: 10px;">{{ borrowedAmounts[asset] }}</td>
+            <td style="padding-left: 10px;"> → </td>
+            <td style="padding-left: 10px;"><span><strong>{{ borrowedAmountPerAsset[asset] }}</strong></span></td>
+          </tr>
+        </table>
+        <p class="cumulative-borrow-amount">Borrowed Amount
+          <kae-spinner *ngIf="!cumulativeBorrowAmount"></kae-spinner>
+          <span *ngIf="cumulativeBorrowAmount">{{ cumulativeBorrowAmount }}</span>
+        </p>
+      </div>
+    </div>
+    <div class="vaults">
+      <h4>Collaterals
+        <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        <i class="fa fa-line-chart" style="float: right;font-size: 14px;transform: translateY(5px);"></i>
+        <span style="float: right;font-size: 12px;padding-right: 10px;font-style: italic;">Cumulative</span>
+      </h4>
+      <div class="kae-borrow">
+        <table>
+          <tr *ngFor="let asset of collateralAmounts | keys">
+            <th *ngIf="asset == '0x321162Cd933E2Be498Cd2267a90534A804051b11'">
+              <img [src]="tokenAddresses['0x321162Cd933E2Be498Cd2267a90534A804051b11']" style="padding-right: 10px;width: 25px;vertical-align: inherit;" alt="">
+              <span> WBTC </span>
+            </th>
+            <th *ngIf="asset == '0x04068DA6C83AFCFA0e13ba15A6696662335D5B75'">
+              <img [src]="tokenAddresses['0x04068DA6C83AFCFA0e13ba15A6696662335D5B75']" style="padding-right: 10px;width: 25px;vertical-align: inherit;" alt="">
+              <span> USDC </span>
+            </th>
+            <th *ngIf="asset == '0x049d68029688eAbF473097a2fC38ef61633A3C7A'">
+              <img [src]="tokenAddresses['0x049d68029688eAbF473097a2fC38ef61633A3C7A']" style="padding-right: 10px;width: 25px;vertical-align: inherit;" alt="">
+              <span> USDT </span>
+            </th>
+            <th *ngIf="asset == '0x74b23882a30290451A17c44f4F05243b6b58C76d'">
+              <img [src]="tokenAddresses['0x74b23882a30290451A17c44f4F05243b6b58C76d']" style="padding-right: 10px;width: 25px;vertical-align: inherit;" alt="">
+              <span> ETH </span>
+            </th>
+            <th *ngIf="asset == '0x21be370D5312f44cB42ce377BC9b8a0cEF1A4C83'">
+              <img [src]="tokenAddresses['0x21be370D5312f44cB42ce377BC9b8a0cEF1A4C83']" style="padding-right: 10px;width: 25px;vertical-align: inherit;" alt="">
+              <span> FTM </span>
+            </th>
+            <th *ngIf="asset == '0x8D11eC38a3EB5E956B052f67Da8Bdc9bef8Abf3E'">
+              <img [src]="tokenAddresses['0x8D11eC38a3EB5E956B052f67Da8Bdc9bef8Abf3E']" style="padding-right: 10px;width: 25px;vertical-align: inherit;" alt="">
+              <span> DAI </span>
+            </th>
+            <th *ngIf="asset == '0xb3654dc3D10Ea7645f8319668E8F54d2574FBdC8'">
+              <img [src]="tokenAddresses['0xb3654dc3D10Ea7645f8319668E8F54d2574FBdC8']" style="padding-right: 10px;width: 25px;vertical-align: inherit;" alt="">
+              <span> LINK </span>
+            </th>
+            <!-- <td style="padding-left: 10px;"> → </td> -->
+            <td style="padding-left: 10px;">
+              <span *ngIf="collateralAmounts[asset] != ''">{{ collateralAmounts[asset] }}</span>
+              <span *ngIf="collateralAmounts[asset] == ''">0</span>
+            </td>
+            <td style="padding-left: 10px;"> → </td>
+            <td style="padding-left: 10px;">
+              <span *ngIf="collateralAmountPerAsset[asset] != null"><strong>{{ collateralAmountPerAsset[asset] }}</strong></span>
+              <span *ngIf="collateralAmountPerAsset[asset] == null"><strong>$0.00</strong></span>
+            </td>
+          </tr>
+        </table>
+        <p class="cumulative-borrow-amount">Collateral Amount
+          <kae-spinner *ngIf="!cumulativeCollateralAmount"></kae-spinner>
+          <span *ngIf="cumulativeCollateralAmount">{{ cumulativeCollateralAmount }}</span>
+        </p>
+      </div>
+    </div>
+    <div class="vaults" style="height: 284px;">
+      <h4>Vaults Utilisation Rates <i class="fa fa-pie-chart" aria-hidden="true"></i></h4>
+      <div class="kae-utilisation-rate">
+        <table>
+          <tr *ngFor="let asset of depositedAmounts | keys">
+            <th *ngIf="asset == '0x321162Cd933E2Be498Cd2267a90534A804051b11'">
+              <img [src]="tokenAddresses['0x321162Cd933E2Be498Cd2267a90534A804051b11']" style="padding-right: 10px;width: 25px;vertical-align: inherit;" alt="">
+              <span> WBTC </span>
+            </th>
+            <th *ngIf="asset == '0x04068DA6C83AFCFA0e13ba15A6696662335D5B75'">
+              <img [src]="tokenAddresses['0x04068DA6C83AFCFA0e13ba15A6696662335D5B75']" style="padding-right: 10px;width: 25px;vertical-align: inherit;" alt="">
+              <span> USDC </span>
+            </th>
+            <th *ngIf="asset == '0x049d68029688eAbF473097a2fC38ef61633A3C7A'">
+              <img [src]="tokenAddresses['0x049d68029688eAbF473097a2fC38ef61633A3C7A']" style="padding-right: 10px;width: 25px;vertical-align: inherit;" alt="">
+              <span> USDT </span>
+            </th>
+            <th *ngIf="asset == '0x74b23882a30290451A17c44f4F05243b6b58C76d'">
+              <img [src]="tokenAddresses['0x74b23882a30290451A17c44f4F05243b6b58C76d']" style="padding-right: 10px;width: 25px;vertical-align: inherit;" alt="">
+              <span> ETH </span>
+            </th>
+            <th *ngIf="asset == '0x21be370D5312f44cB42ce377BC9b8a0cEF1A4C83'">
+              <img [src]="tokenAddresses['0x21be370D5312f44cB42ce377BC9b8a0cEF1A4C83']" style="padding-right: 10px;width: 25px;vertical-align: inherit;" alt="">
+              <span> FTM </span>
+            </th>
+            <th *ngIf="asset == '0x8D11eC38a3EB5E956B052f67Da8Bdc9bef8Abf3E'">
+              <img [src]="tokenAddresses['0x8D11eC38a3EB5E956B052f67Da8Bdc9bef8Abf3E']" style="padding-right: 10px;width: 25px;vertical-align: inherit;" alt="">
+              <span> DAI </span>
+            </th>
+            <th *ngIf="asset == '0xb3654dc3D10Ea7645f8319668E8F54d2574FBdC8'">
+              <img [src]="tokenAddresses['0xb3654dc3D10Ea7645f8319668E8F54d2574FBdC8']" style="padding-right: 10px;width: 25px;vertical-align: inherit;" alt="">
+              <span> LINK </span>
+            </th>
+            <td style="padding-left: 10px;">
+              <div class="progress">
+              	<div class="bar" [style.width]="vaultUtilisationRate(asset)">
+              	</div>
+              </div>
+              <p class="percent">{{ vaultUtilisationRate(asset) }}</p>
+            </td>
+          </tr>
+        </table>
+        <!-- <p class="cumulative-liquidity-amount">Overal Utilisation Rate <span *ngIf="cumulativeLiquidityAmount">67.82%</span></p> -->
+      </div>
+    </div>
+    <div class="vaults" style="height: 284px;">
+      <h4>Token Info <i class="fa fa-info-circle" aria-hidden="true"></i></h4>
+      <div class="kae-stake">
+        <table>
+          <tr>
+            <th>Staked Amount</th>
+            <td><span>{{ kaeStaked }}</span></td>
+          </tr>
+          <tr>
+            <th>Circulation Supply</th>
+            <td><span>294,695</span></td>
+          </tr>
+          <tr>
+            <th>Percentage Staked</th>
+            <td><span>~{{ kaeSupplyStaked }}%</span></td>
+          </tr>
+          <tr>
+            <th>Contract</th>
+            <td><a target="_blank" href="https://ftmscan.com/token/0x65Def5029A0e7591e46B38742bFEdd1Fb7b24436">0x65...4436 <i class="fa fa-external-link" aria-hidden="true"></i></a></td>
+          </tr>
+          <tr>
+            <th>Website</th>
+            <td><a target="_blank" href="https://kanpeki.finance">kanpeki.finance <i class="fa fa-external-link" aria-hidden="true"></i></a></td>
+          </tr>
+          <tr>
+            <th>Utility</th>
+            <td><a target="_blank" href="https://app.kanpeki.finance">app.kanpeki.finance <i class="fa fa-external-link" aria-hidden="true"></i></a></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="vaults" style="height: 284px;">
+      <h4>Loan Stats - Total Loans
+        <span *ngIf="loansCalculationCompleted" style="color: #066837">
+          {{ sumaActiveLoans + sumaActiveRepaid + sumaActiveDefaulted }}
+        </span> <i class="fa fa-bank" aria-hidden="true" style="padding-left: 5px;"></i>
+        <kae-spinner *ngIf="!loansCalculationCompleted" style="padding-left: 10px;vertical-align: text-bottom;"></kae-spinner>
+      </h4>
+      <div class="kae-loans">
+        <p> {{ sumaActiveLoans }} </p>
+        <span>Active</span>
+      </div>
+      <div class="kae-loans">
+        <p> {{ sumaActiveRepaid }} </p>
+        <span>Repaid</span>
+      </div>
+      <div class="kae-loans">
+        <p> {{ sumaActiveDefaulted }} </p>
+        <span>Defaulted</span>
+      </div>
+      <h5>Borrowers <span>{{ allBorrowersAddresses.length }}</span>
+        <kae-spinner *ngIf="!loansCalculationCompleted" style="padding-left: 10px;vertical-align: text-bottom;"></kae-spinner>
+      </h5>
+    </div>
+  </div>
+
+  <div class="content-table">
+    <h4>Loans Data <i class="fa fa-list" aria-hidden="true" style="padding-left: 5px;"></i>
+      <kae-spinner *ngIf="!loansCalculationCompleted" style="padding-left: 10px;vertical-align: text-bottom;"></kae-spinner>
+    </h4>
+    <table class="borrow-table" cellspacing="0">
+      <thead>
+        <tr>
+          <th style="text-align: center;">Borrower</th>
+          <th style="text-align: center;">Debt Token</th>
+          <th style="text-align: center;">Amount</th>
+          <th style="text-align: center;">Collateral Token</th>
+          <th style="text-align: center;">Collateral</th>
+          <th style="text-align: center;">Interest Rate</th>
+          <th style="text-align: center;">Duration</th>
+          <th style="text-align: center;">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let debt of borrowData">
+          <td>
+            <a target="_blank" [href]="debt.ftmScan">{{ debt.borrower }}</a>
+          </td>
+          <td>
+            <img [src]="tokenAddresses[debt.token]" alt="">
+          </td>
+          <td>{{ debt.amount }}</td>
+          <td>
+            <img [src]="tokenAddresses[debt.collateralToken]" alt="">
+          </td>
+          <td>{{ debt.collateral }}</td>
+          <td><strong>{{ debt.interestRate }} %</strong></td>
+          <td><i>{{ debt.durationInSecs }}</i></td>
+          <td>
+            <i *ngIf="debt.status == 0" class="fa fa-circle-o-notch fa-spin fa-2x fa-fw"></i>
+            <span class="sr-only">Loading...</span>
+            <span *ngIf="debt.status == 1" style="color: #008000;font-weight: 800;">Repaid</span>
+            <span *ngIf="debt.status == 2" style="color: #ff0000;font-weight: 800;">Defaulted</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<router-outlet></router-outlet>
+
+
+
+
+<!--
+<div class="jsx-3472159089 col-12 col-md-6 col-lg-5 order-md-2 eth-3d"><div class="jsx-3472159089 wrapper"><div class="jsx-3472159089 pyramid"><div class="jsx-3472159089 square"><div class="jsx-3472159089 triangle"></div><div class="jsx-3472159089 triangle"></div><div class="jsx-3472159089 triangle"></div><div class="jsx-3472159089 triangle"></div></div></div><div class="jsx-3472159089 pyramid inverse"><div class="jsx-3472159089 square"><div class="jsx-3472159089 triangle"></div><div class="jsx-3472159089 triangle"></div><div class="jsx-3472159089 triangle"></div><div class="jsx-3472159089 triangle"></div></div></div></div></div> -->
